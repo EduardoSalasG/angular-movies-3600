@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from 'src/app/interfaces/interfaces';
+import { Movie, Pelicula } from 'src/app/interfaces/interfaces';
 import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
@@ -10,35 +10,42 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class HomeComponent implements OnInit {
 
   movieList:Movie[] = [];
+  movieList2:Pelicula[] = [];
   textSearch: string = "";
   loading: boolean = false;
 
   constructor(private service:MoviesService) {}
 
   ngOnInit(): void {
-    this.service.getDataMovies()
+    // this.service.getDataMovies()
+    // .subscribe(resp=>{
+    //   console.log(resp.Search)
+    //   this.movieList = resp.Search;
+    // })
+
+    this.service.getDataPeliculas()
     .subscribe(resp=>{
-      console.log(resp.Search)
-      this.movieList = resp.Search;
+      console.log(resp)
+      this.movieList2 = resp;
     })
   }
 
   onClickSearch(){
-    this.loading=true;
-    this.movieList=[];
-    console.log("Click en buscar: "+ this.textSearch);
-    setTimeout(() =>{
-      this.service.searchDatamovie(this.textSearch)
-      .subscribe(resp=>{
-        this.loading=false;
-        console.log(resp.Search);
-        if(resp.Search){
-          this.movieList=resp.Search;
-        }else{
-          this.movieList=[];
-        }
-      })
-    },3000)
+    // this.loading=true;
+    // this.movieList=[];
+    // console.log("Click en buscar: "+ this.textSearch);
+    // setTimeout(() =>{
+    //   this.service.searchDatamovie(this.textSearch)
+    //   .subscribe(resp=>{
+    //     this.loading=false;
+    //     console.log(resp.Search);
+    //     if(resp.Search){
+    //       this.movieList=resp.Search;
+    //     }else{
+    //       this.movieList=[];
+    //     }
+    //   })
+    // },3000)
 
   }
 

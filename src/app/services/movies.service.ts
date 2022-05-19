@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiResult } from '../interfaces/interfaces';
+import { environment } from 'src/environments/environment';
+import { ApiResult, Pelicula } from '../interfaces/interfaces';
+
+const URL: string = environment.URL
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +20,15 @@ export class MoviesService {
     return this.http.get<ApiResult>(`https://www.omdbapi.com/?s=${text}&apikey=6ede04f9`)
 
   }
+
+  getDataMoviesLocal()
+  {
+    return this.http.get<ApiResult>(`https://localhost:7160/movies`)
+  }
+
+  getDataPeliculas(){
+    return this.http.get<Pelicula[]>(`${URL}/peliculas`)
+  }
+
+
 }

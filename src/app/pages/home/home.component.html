@@ -25,24 +25,24 @@
       
         <div class="album py-5 bg-light">
           <div class="container">
-            <div *ngIf="movieList.length == 0 && loading==false">
+            <div *ngIf="movieList2.length == 0 && loading==false">
               <h3>No existen resultados</h3>
             </div>
             <div *ngIf="loading == true" class="d-flex align-items-center">
               <strong>Cargando...</strong>
               <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
             </div>
-            <div *ngIf="movieList.length > 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              <div *ngFor="let movie of movieList" class="col">
+            <div *ngIf="movieList2.length > 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div *ngFor="let movie of movieList2" class="col">
                 <div class="card shadow-sm">
-                  <img src="{{movie.Poster}}">
+                  <img src="{{movie.poster}}">
                   <div class="card-body">
-                    <p class="card-text">{{movie.Title}}</p>
+                    <p class="card-text">{{movie.name}}</p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                         <a type="button" href="https://www.imdb.com/title/tt0076759/"class="btn btn-sm btn-outline-secondary" target="_blank">Ver más</a>
                       </div>
-                      <small class="text-muted">{{movie.Year}}</small>
+                      <small class="text-muted">{{movie.year}}</small>
                     </div>
                   </div>
                 </div>

@@ -11,3 +11,10 @@ export interface ApiResult {
     totalResults:number,
     Response:boolean
 }
+
+export interface Pelicula{
+    id: number,
+    name: string,
+    poster: string,
+    year: number
+}
