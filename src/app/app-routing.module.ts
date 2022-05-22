@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { MantpeliculasComponent } from './pages/mantpeliculas/mantpeliculas.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
@@ -17,6 +19,14 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent
+  },
+  {
+    path: 'mantpeliculas',
+    component: MantpeliculasComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '',

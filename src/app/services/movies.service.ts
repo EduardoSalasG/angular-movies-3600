@@ -30,5 +30,8 @@ export class MoviesService {
     return this.http.get<Pelicula[]>(`${URL}/peliculas`)
   }
 
+  postPelicula(pelicula:Pelicula){
+    return this.http.post(`${URL}/peliculas`,pelicula);
+  }
 
 }

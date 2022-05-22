@@ -14,6 +14,12 @@ export class MenuComponent implements OnInit {
       icon: 'bi-house'
     },
     {
+      url: 'mantpeliculas',
+      text: 'Mantenedor de Películas',
+      icon: 'bi-film'
+      
+    },
+    {
       url: 'about',
       text: 'About',
       icon: 'bi-umbrella'
@@ -22,7 +28,7 @@ export class MenuComponent implements OnInit {
       url: 'contact',
       text: 'Contact',
       icon: 'bi-telephone'
-    },
+    }
   ]
 
   constructor() { }

@@ -13,8 +13,20 @@ export interface ApiResult {
 }
 
 export interface Pelicula{
-    id: number,
-    name: string,
-    poster: string,
-    year: number
+    id?: number,
+    name?: string,
+    poster?: string,
+    year?: number
+}
+
+export interface Usuario{
+    email?: string,
+    password?: string
+}
+
+export interface userToken{
+    expiration:Date,
+    token: string,
+    status:string,
+    errorMsj:string
 }
