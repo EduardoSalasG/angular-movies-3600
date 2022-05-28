@@ -30,3 +30,27 @@ export interface userToken{
     status:string,
     errorMsj:string
 }
+
+export interface RutCreacion{
+    rut?:string,
+    nombre?:string,
+    nombreActividad?:string,
+    codigoActividad?:number,
+    afectoIVA?:boolean,
+    fechaInicioAct?:Date; 
+}
+
+export interface RutResponse{
+    id?: number,
+    rut?:string,
+    nombre?:string,
+    nombreActividad?:string,
+    codigoActividad?:number,
+    afectoIVA?:boolean,
+    fechaInicioAct?:Date; 
+}
+
+
+export interface RutDTO{
+    rut?:string
+}

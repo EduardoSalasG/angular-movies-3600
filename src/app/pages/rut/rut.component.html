@@ -1,0 +1,51 @@
+<div style="min-width: 83vw">
+    <app-header></app-header>
+    <div class="card col-md-5 mt-3" style="margin-left: auto; margin-right:auto">
+        <div class="card-header bg-primary text-white text-center">
+            <h3>Ingrese RUT</h3>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <input 
+                    name="rutInput"
+                    [(ngModel)]="rutInput"
+                    type="text" 
+                    class="form-control" 
+                    placeholder="12345678-9"
+                    >
+                </div>
+                <div class="col text-center">
+                    <button 
+                    (click)="submitForm()"
+                    class="btn btn-primary mt-3">
+                    Ingresar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="loading==true" class="d-flex justify-content-center" width="100vx">
+        <div class="text-center">
+            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+        </div>
+      </div>
+    <div class="container mt-5" style="text-align: center;">
+        <div *ngIf="theError == true && loading == false">
+            <h3>El RUT ingresado no existe en la base</h3>
+        </div>
+    </div>
+    <div *ngIf="theError == false && show== true" class="container mt-5" style="text-align: center;">
+        <h2>Resultado</h2>
+        <div class="col text-start">
+            <ul>
+                <li><label>Nombre: {{rutResponse.nombre}}</label><br></li>
+                <li><label>RUT: {{rutResponse.rut}}</label><br></li>
+                <li><label>Giro: {{rutResponse.nombreActividad}}</label><br></li>
+                <li><label>Código del giro: {{rutResponse.codigoActividad}}</label><br></li>
+                <li *ngIf="rutResponse.afectoIVA == true"><label>Afecto a IVA: Sí</label><br></li>
+                <li *ngIf="rutResponse.afectoIVA == false"><label>Afecto a IVA: No</label><br></li>
+                <li><label>Fecha de inicio de actividades {{rutResponse.fechaInicioAct}}</label><br></li>
+            </ul>
+        </div>
+    </div>
+</div> 

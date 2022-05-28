@@ -71,4 +71,25 @@ export class UserService {
     this.userRole = "";  
   }
 
+  async createUser(usuario:Usuario){
+
+    return new Promise(resolve=>{
+      this.http.post<userToken>(`${url}/account`,usuario)
+      .subscribe(resp=>{
+        console.log(resp);  
+        if(resp.status == "ok"){
+          resolve(true);
+        }else{
+          resolve(false);
+        }
+      }, (error)=>{
+        resolve(false);
+      });
+    })    
+  }
+
+  // createUser(usuario:Usuario){
+  //   return this.http.post(`${url}/account`,usuario);
+  // }
+
 }

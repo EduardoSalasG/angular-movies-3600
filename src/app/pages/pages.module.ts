@@ -9,6 +9,9 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ComponentsModule } from '../components/components.module';
 import { MantpeliculasComponent } from './mantpeliculas/mantpeliculas.component';
+import { RegisterComponent } from './register/register.component';
+import { RutComponent } from './rut/rut.component';
+import { CreaterutComponent } from './createrut/createrut.component';
 
 
 
@@ -19,7 +22,10 @@ import { MantpeliculasComponent } from './mantpeliculas/mantpeliculas.component'
     ContactComponent,
     NotFoundComponent,
     LoginComponent,
-    MantpeliculasComponent
+    MantpeliculasComponent,
+    RegisterComponent,
+    RutComponent,
+    CreaterutComponent
   ],
   imports: [
     CommonModule,

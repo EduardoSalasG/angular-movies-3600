@@ -20,6 +20,18 @@ export class MenuComponent implements OnInit {
       
     },
     {
+      url: 'rut',
+      text: 'Buscador de RUT de empresas',
+      icon: 'bi-person'
+      
+    },
+    {
+      url: 'createrut',
+      text: 'Crear rut',
+      icon: 'bi-person-plus'
+      
+    },
+    {
       url: 'about',
       text: 'About',
       icon: 'bi-umbrella'

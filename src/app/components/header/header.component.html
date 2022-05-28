@@ -4,7 +4,7 @@
         <p class="text-white" >{{nombreUsuario}} : {{rolUsuario}}</p> 
       </div>  
       <div style="margin-left: auto;" *ngIf="!usuarioLogueado">
-        <a class="text-white" routerLink="/login">Ingresar</a> | <a class="text-white" routerLink="">Registrarse</a>
+        <a class="text-white" routerLink="/login">Ingresar</a> | <a class="text-white" routerLink="/register">Registrarse</a>
       </div>    
       <div style="margin-left: auto;" *ngIf="usuarioLogueado">
         <a class="text-white" (click)="logout()">Salir</a>
