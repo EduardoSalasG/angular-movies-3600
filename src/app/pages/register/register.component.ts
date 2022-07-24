@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
 
 
   registerForm: FormGroup = this.fb.group({
+    "name": new FormControl(null,Validators.required),
     "email" : new FormControl(null,Validators.compose([Validators.required,Validators.email])),
     "password": new FormControl(null,Validators.required),
     "repassword": new FormControl(null,Validators.required)
@@ -38,6 +39,7 @@ export class RegisterComponent implements OnInit {
   async submitForm(){
     console.log("Form submited");
     if(this.registerForm.valid){
+      this.usuario.name = this.name?.value;
       this.usuario.email = this.email?.value;
       this.usuario.password = this.password?.value;
 
@@ -67,6 +69,9 @@ export class RegisterComponent implements OnInit {
   //   }
   // }
 
+  get name(){
+    return this.registerForm.get("name");
+  }
 
   get email(){
     return this.registerForm.get("email");

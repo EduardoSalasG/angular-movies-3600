@@ -12,6 +12,11 @@ export interface ApiResult {
     Response:boolean
 }
 
+export interface PeliculasResponse{
+    ok:boolean,
+    peliculas:Pelicula[]
+}
+
 export interface Pelicula{
     id?: number,
     name?: string,
@@ -20,15 +25,14 @@ export interface Pelicula{
 }
 
 export interface Usuario{
+    name?: string,
     email?: string,
     password?: string
 }
 
 export interface userToken{
-    expiration:Date,
-    token: string,
-    status:string,
-    errorMsj:string
+    ok:boolean,
+    token: string
 }
 
 export interface RutCreacion{
@@ -53,4 +57,14 @@ export interface RutResponse{
 
 export interface RutDTO{
     rut?:string
+}
+
+export interface GenerosResponse{
+    ok:boolean,
+    generos:Genero[]
+}
+
+export interface Genero{
+    _id?:string,
+    nombre?: string
 }

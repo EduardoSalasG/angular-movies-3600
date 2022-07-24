@@ -8,6 +8,17 @@
             <form [formGroup]="registerForm">
                 <div class="form-group">
                     <input 
+                    formControlName="name"
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Nombre"
+                    >
+                    <span *ngIf="name?.invalid && (name?.dirty || name?.touched)&& name?.errors?.['required']" class="text-danger">
+                        El campo nombre es requerido
+                    </span>
+                </div>
+                <div class="form-group mt-3">
+                    <input 
                     formControlName="email"
                     type="email" 
                     class="form-control" 

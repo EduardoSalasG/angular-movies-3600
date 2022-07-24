@@ -30,6 +30,7 @@ export class RutComponent implements OnInit {
       console.log(resp);  
       this.rutResponse = resp;
       this.show = true;
+      this.theError = false;
     }, (error)=>{
       this.theError = true;
       console.log("El rut no existe en la base");

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-menu',
@@ -18,6 +19,11 @@ export class MenuComponent implements OnInit {
       text: 'Mantenedor de Películas',
       icon: 'bi-film'
       
+    },
+    {
+      url: 'mantenedor-generos',
+      text: 'Mantenedor de Géneros',
+      icon: 'bi-camera-reels'
     },
     {
       url: 'rut',
@@ -43,7 +49,7 @@ export class MenuComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
   }

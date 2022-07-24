@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { userToken, Usuario } from '../interfaces/interfaces';
 
@@ -14,21 +15,33 @@ export class UserService {
   token:any;
   userName:string = "";
   userRole:string = "";
+  menuItems:any[] = [
+    {
+      url: 'home',
+      text: 'Home',
+      icon: 'bi-house'
+    },
+  ];
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    private router:Router
+    ) { }
 
   async login(usuario:Usuario){
 
     return new Promise(resolve=>{
-      this.http.post<userToken>(`${url}/account/login`,usuario)
+      this.http.post<userToken>(`${url}/user/login`,usuario)
       .subscribe(resp=>{
         console.log(resp);  
-        if(resp.status == "ok"){
+        if(resp.ok){
           this.guardarToken(resp.token);   
           this.leerToken(); 
+          this.setMenuItems();
           resolve(true);    
         }else{
           this.borraToken();
+          this.setMenuItems();
           resolve(false);
         }
       });
@@ -51,6 +64,7 @@ export class UserService {
     if(this.token){
       this.usuarioLogueado=true;
       this.leerToken();
+      this.setMenuItems();
     }
   }
 
@@ -60,8 +74,8 @@ export class UserService {
     let decodeJSONJwtData = window.atob(jwtData);
     let decodeJwtData = JSON.parse(decodeJSONJwtData);
     console.log(decodeJwtData);
-    this.userName = decodeJwtData['unique_name'];
-    this.userRole = decodeJwtData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    this.userName = decodeJwtData.user.name;
+    this.userRole = decodeJwtData.user.role;
   }
 
   logout(){
@@ -69,15 +83,16 @@ export class UserService {
     this.usuarioLogueado = false;
     this.userName = "";
     this.userRole = "";  
+    this.setMenuItems();
   }
 
   async createUser(usuario:Usuario){
 
     return new Promise(resolve=>{
-      this.http.post<userToken>(`${url}/account`,usuario)
+      this.http.post<userToken>(`${url}/user`,usuario)
       .subscribe(resp=>{
         console.log(resp);  
-        if(resp.status == "ok"){
+        if(resp.ok){
           resolve(true);
         }else{
           resolve(false);
@@ -88,8 +103,68 @@ export class UserService {
     })    
   }
 
-  // createUser(usuario:Usuario){
-  //   return this.http.post(`${url}/account`,usuario);
-  // }
+  async validarUsuario():Promise<boolean>{
+    this.cargarToken();
+    if(!this.token){
+      this.router.navigate(['/login']);
+      return Promise.resolve(false);
+    }
+    else{
+      return Promise.resolve(true);
+    }
+  }
+
+  setMenuItems(){
+    if(this.usuarioLogueado){
+      this.menuItems = [];
+      this.menuItems.push(
+        {
+          url: 'home',
+          text: 'Home',
+          icon: 'bi-house'
+        },
+        {
+          url: 'about',
+          text: 'About',
+          icon: 'bi-umbrella'
+        },
+        {
+          url: 'contact',
+          text: 'Contact',
+          icon: 'bi-telephone'
+        }
+      );
+      if(this.userRole=='administrador'){
+        this.menuItems.push(
+          {
+            url: 'mantpeliculas',
+            text: 'Mantenedor de Películas',
+            icon: 'bi-film'
+            
+          },
+          {
+            url: 'mantenedor-generos',
+            text: 'Mantenedor de Géneros',
+            icon: 'bi-camera-reels'
+          },
+        );
+      }
+
+    }else{
+      this.menuItems= [];
+      this.menuItems.push(
+        {
+          url: 'home',
+          text: 'Home',
+          icon: 'bi-house'
+        },
+      )
+    }
+  }
+
+  isAdmin( ){
+    return this.http.get(`${url}/user/checkadmin`);
+  }
+
 
 }

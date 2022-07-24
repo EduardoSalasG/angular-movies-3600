@@ -25,10 +25,12 @@ export class HomeComponent implements OnInit {
 
     this.service.getDataPeliculas()
     .subscribe(resp=>{
-      console.log(resp)
-      this.movieList2 = resp;
+      console.log(resp);
+      if(resp.ok){
+        this.movieList2 = resp.peliculas;
+      }
     })
-  }
+  };
 
   onClickSearch(){
     // this.loading=true;

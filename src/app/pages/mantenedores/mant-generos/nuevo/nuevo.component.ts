@@ -1,0 +1,46 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Genero } from 'src/app/interfaces/interfaces';
+import { GenerosService } from 'src/app/services/generos.service';
+
+@Component({
+  selector: 'app-nuevo',
+  templateUrl: './nuevo.component.html',
+  styleUrls: ['./nuevo.component.css']
+})
+export class NuevoComponent implements OnInit {
+
+  constructor(
+    private fb:FormBuilder,
+    private service:GenerosService,
+    private router:Router
+  ) { }
+
+  nuevoGenero:Genero = {}
+
+  generoForm : FormGroup = this.fb.group({
+    "nombre": new FormControl('',Validators.required)
+  });
+
+
+  ngOnInit(): void {
+  }
+
+  get nombre(){
+    return this.generoForm.get("nombre");
+  }
+
+  submitForm(){
+    if(this.generoForm.valid){
+      this.nuevoGenero.nombre = this.nombre?.value;
+      this.service.guardarGenero(this.nuevoGenero).subscribe((resp:any)=>{
+        if(resp.ok){
+          this.router.navigate(['mantenedor-generos']);
+        }
+      })
+    }
+  }
+
+
+}

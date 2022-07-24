@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ApiResult, Pelicula } from '../interfaces/interfaces';
+import { ApiResult, Pelicula, PeliculasResponse } from '../interfaces/interfaces';
 
 const URL: string = environment.URL
 
@@ -27,11 +27,11 @@ export class MoviesService {
   }
 
   getDataPeliculas(){
-    return this.http.get<Pelicula[]>(`${URL}/peliculas`)
+    return this.http.get<PeliculasResponse>(`${URL}/pelicula`)
   }
 
   postPelicula(pelicula:Pelicula){
-    return this.http.post(`${URL}/peliculas`,pelicula);
+    return this.http.post(`${URL}/pelicula`,pelicula);
   }
 
 }

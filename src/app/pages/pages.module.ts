@@ -8,11 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ComponentsModule } from '../components/components.module';
-import { MantpeliculasComponent } from './mantpeliculas/mantpeliculas.component';
+import { MantpeliculasComponent } from './mantenedores/peliculas/mantpeliculas/mantpeliculas.component';
 import { RegisterComponent } from './register/register.component';
 import { RutComponent } from './rut/rut.component';
 import { CreaterutComponent } from './createrut/createrut.component';
-
 
 
 @NgModule({
@@ -26,7 +25,7 @@ import { CreaterutComponent } from './createrut/createrut.component';
     RegisterComponent,
     RutComponent,
     CreaterutComponent
-  ],
+    ],
   imports: [
     CommonModule,
     FormsModule,
